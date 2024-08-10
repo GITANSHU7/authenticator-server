@@ -3,8 +3,9 @@ const Lead = require('../models/leadModels');
 
 exports.createLead = async (req, res) => {
     try {
-        const { name, email, number } = req.body;
-        const newLead = new Lead({ name, email, number });
+        
+        const { name, email, number, products  } = req.body;
+        const newLead = new Lead({ name, email, number, products });
         // check if Lead already exists
         const leadExists = await Lead.findOne({ email });
         const leadNumberExists = await Lead.findOne({ number });
@@ -85,7 +86,7 @@ exports.deleteLead = async (req, res) => {
 exports.updateLead = async (req, res) => {
     try {
         const leadId = req.params.id;
-        const { name, email, number } = req.body;
+        const { name, email, number, products } = req.body;
 
         // Find the lead in the database
         const lead = await Lead.findById(leadId);
@@ -105,6 +106,10 @@ exports.updateLead = async (req, res) => {
         }
         if (number && number !== lead.number) {
             lead.number = number;
+            isUpdated = true;
+        }
+        if (products && products !== lead.products) {
+            lead.products = products;
             isUpdated = true;
         }
        
@@ -129,6 +134,7 @@ exports.updateLead = async (req, res) => {
         return res.status(500).json({ error: error.message });
     }
 }
+
 // get lead by id
 
 exports.getLeadById = async (req, res) => {

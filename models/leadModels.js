@@ -21,6 +21,22 @@ const leadSchema = new mongoose.Schema({
         message: 'Contact field is required',
         unique: true
     },
+    products: [{
+        productName: {
+            type: String,
+            required: [true, 'Product name is required'],
+            trim: true
+        },
+        quantity: {
+            type: Number,
+            required: [true, 'Product quantity is required']
+        },
+        price: {
+            type: Number,
+            required: [true, 'Product price is required']
+        }
+    }]
+    
 
    
 }, { timestamps: true });
