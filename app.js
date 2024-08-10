@@ -10,8 +10,10 @@ app.use(bodyParser.json());
 
 
 const authRoutes = require('./routes/authRoutes');
+const leadRoutes = require('./routes/leadRoutes');
 
 app.use('/auth', authRoutes)
+app.use('/lead', leadRoutes)
 
 app.get('/', (req, res) => {
     res.send('Welcome to the Backend API');

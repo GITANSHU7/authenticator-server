@@ -14,14 +14,12 @@ const seedDatabase = async () => {
     const superadmin = new User({
         username: 'admin',
         name: 'admin',
-        email: 'admin@gmail.com',
         password: hashedPassword
     });
 
     const user = new User({
         username: 'user',
         name: 'user',
-        email: 'user@gmail.com',
         password: hashedPassword
     });
 

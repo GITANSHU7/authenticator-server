@@ -96,8 +96,11 @@ exports.signup = async (req, res) => {
                 { error: "All fields (username, password, name) are required" }
             );
         }
+        const usernameExists = await User.findOne({ username });
 
-        // Check if password length is at least 6 characters
+        if (usernameExists) {
+            return res.status(400).json({ message: 'Username already exists' });
+        }
       // Password validation: at least 7 characters, one capital letter, one small letter, one number, and one special character
       const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{7,}$/;
 
@@ -107,11 +110,7 @@ exports.signup = async (req, res) => {
         });
     }
     
-        const usernameExists = await User.findOne({ username });
-        
-        if (usernameExists) {
-            return res.status(400).json({ message: 'Username already exists' });
-        }
+     
 
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
