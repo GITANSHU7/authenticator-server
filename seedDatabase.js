@@ -1,9 +1,10 @@
 const mongoose = require('mongoose');
 const User = require('./models/userModels');
 const bcrypt = require('bcryptjs');
+require('dotenv').config();
 
 const seedDatabase = async () => {
-    await mongoose.connect('mongodb+srv://gitanshugautam7:3JvFFn7oGOdXB1RV@server.fijuhih.mongodb.net/?retryWrites=true&w=majority&appName=server');
+    await mongoose.connect(process.env.DATABASE_URL);
 
     
     const userPassword = '12345678';
