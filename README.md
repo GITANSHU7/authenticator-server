@@ -34,7 +34,7 @@ Welcome to the backend part of reCaptcha Authentication:
 6. To run application
 
    ```bash
-   nodemom
+   nodemon
 
 
 8. To seed database
