@@ -31,12 +31,13 @@ Welcome to the backend part of reCaptcha Authentication:
    SITE_KEY =  Enter your Site Key
    SITE_SECRET =  Enter your Secret Key
 
-
 6. To run application
 
+   ```bash
+   nodemom
+
+
+8. To seed database
+
   ````bash
-  nodemon
-
-
-
-
+  node seedDatabase 
